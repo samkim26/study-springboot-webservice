@@ -2,6 +2,7 @@ package com.samkim.study.springboot.service.posts;
 
 import com.samkim.study.springboot.domain.posts.Posts;
 import com.samkim.study.springboot.domain.posts.PostsRepository;
+import com.samkim.study.springboot.web.dto.PostsResponseDto;
 import com.samkim.study.springboot.web.dto.PostsSaveRequestDto;
 import com.samkim.study.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,13 @@ public class PostsService {
         posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
+    }
+
+    public PostsResponseDto findById(Long id) {
+        Posts entity = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+
+        return new PostsResponseDto(entity);
     }
 
 }
