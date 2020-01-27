@@ -1,5 +1,6 @@
 package com.samkim.study.springboot.domain.posts;
 
+import com.samkim.study.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter // 롬복 어노테이션
 @NoArgsConstructor // 롬복 어노테이션
 @Entity // JPA의 어노테이션 : 테이블과 링크될 클래스임을 나타냄, 기본값으로 카멜케이스 이름을 언더스코어 네이밍(_)으로 테이블 이름을 매칭함 (ex SalesManager.java -> sales_manager table)
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id // JPA 어노테이션 : 해당 테이블의 PK 필드를 나타냄
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK의 생성 규칙을 나타냄. 스프링 부트 2.0 에서는 IDENTITY 옵션을 추가해야만 auto_increment가 됨
